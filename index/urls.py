@@ -5,5 +5,5 @@ from .views import index, plantilla
 
 urlpatterns = [
     path('', index, name= "index"),
-    path('plantilla/', plantilla, name='plantilla')
+    path('plantilla/', plantilla, name='plantilla'),
 ]

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
     {% load static %}
     <head>
@@ -8,7 +9,7 @@
         <meta name="author" content="" />
         {% block BloqueHead %}
         {% endblock BloqueHead %}    
-        <title>Mi proyecto</title>
+        <title>Mi proyecto - Lara Gonzalez</title>
       
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
@@ -24,10 +25,10 @@
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
                 <a class="navbar-brand" href= {% url 'index' %} >Inicio</a>
-                <a class="navbar-brand" href= {% url 'plantilla' %} >Plantilla</a>
-                {% comment %} <a class="navbar-brand" href= {% url 'formulario_curso' %} >Formulario</a>
-                <a class="navbar-brand" href= {% url 'busqueda_curso' %} >Buscar curso</a> {% endcomment %}
-                {% comment %} <a class="btn btn-primary" href="#signup">Registrate</a> {% endcomment %}
+                {% comment %} <a class="navbar-brand" href= {% url 'plantilla' %} >Plantilla</a> {% endcomment %}
+                <a class="navbar-brand" href= {% url 'formulario' %} >Formulario</a>
+                <a class="navbar-brand" href= {% url 'busqueda' %} >Buscar por nombre</a> 
+                <a class="btn btn-primary" href="#signup">Registrate</a>
             </div>
         </nav>
         {% block pruebaTemplate %}
@@ -36,35 +37,63 @@
 
         <!-- Masthead-->    
     {% block bloque_de_plantilla %}
+    {%block headerblock%}   
         <header class="masthead">   
             <div class="container position-relative">
                 <div class="row justify-content-center">
                     <div class="col-xl-6">
-                        <div class="text-center text-white">
+                        <div class="text-center text-black">
                             <!-- Page heading-->
-                       {%block headerblock%}
+                      
                        
-                                <h1 class="mb-5">Bienvenidos!</h1>     
-                        {% endblock headerblock%}
+                                <h1 class="mb-5">¡Bienvenidos!</h1>     
+    
                         </div>
                     </div>
                 </div>
             </div>
         </header>
-
- {% endblock bloque_de_plantilla %}
+     
+{% endblock headerblock%} 
+{% endblock bloque_de_plantilla %}
         {%endblock header_index%}
 
-        {% block otroBloque %}
-        {% endblock otroBloque %}
+{% block otroBloque %}
 
-        <!-- Footer-->
+        <!-- Image Showcases-->
+        <section class="showcase">
+            <div class="container-fluid p-0">
+                <div class="row g-0">
+                    <div class="col-lg-6 order-lg-2 text-white showcase-img"style="background-image: url("..assets/img/bg-showcase-1.jpg')"></div>
+                    <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                            <h2>Un poco sobre mi...</h2>
+                            <p class="lead mb-0">Soy nacida en la ciudad de Neuquen Capital pero me mude a Buenos Aires a estudiar y quede fascinada con la ciudad...</p>
+                        </div>
+                    </div>
+                    <div class="row g-0">
+                        <div class="col-lg-6 text-white showcase-img" style="background-image: url('..assets/img/bg-showcase-1.jpg')"></div>
+                        <div class="col-lg-6 my-auto showcase-text">
+                            <h2>A qué me dedico?</h2>
+                            <p class="lead mb-0">Soy abogada y me especializo en derecho societario y corporativo</p>
+                        </div>
+                    </div>
+                    <div class="row g-0">
+                        <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('index\static\assets\img\testimonials-1.jpg')"></div>
+                        <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                            <h2>Queres saber un poco más sobre mi?</h2>
+                            <p class="lead mb-0">Hace click en el enlace "Sobre mi" y te llevará a una página llena de información sobre mi!</p>
+                        </div>
+                    </div>
+                </div>
+        </section>
+{% endblock otroBloque %}
+<!-- Footer-->
         <footer class="footer bg-light">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
                         <ul class="list-inline mb-2">
-                            <li class="list-inline-item"><a href="#!">Sobre mi</a></li>
+                            <li class="list-inline-item"><a href= {% url 'plantilla' %}>Sobre mi</a></li>
                             <li class="list-inline-item">⋅</li>
                             <li class="list-inline-item"><a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=CllgCJqTfVPvzfVVXpQRTRRSqzhxprqwpqRZVmPqssnDHqrJZzvcFShvwZFmHxslWRXChTGdJPg">Contacto</a></li>
                             {% comment %} <li class="list-inline-item">⋅</li> {% endcomment %}

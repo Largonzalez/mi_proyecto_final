@@ -1,9 +1,10 @@
 {%extends 'index/index.html'%}
-
+{%block headerblock%}    
+{%endblock headerblock%}
     {%block header_index%}      
     {%endblock header_index%}
 
-    {%block pruebaTemplate%}
+{%block pruebaTemplate%}
 
     <form action={% url 'busqueda' %} method="get">
         {% csrf_token %}
@@ -17,14 +18,15 @@
 
     {% if dato %}
         Se busco por el dato {{dato}}
-        {% for curso in cursos_buscados %}
+        {% for nombre in nombres_buscados %}
         <li>
-            {{curso}}
+            {{nombre}}
         </li>
         {% endfor %}
     {% else %}
         No se busco nada...
     {% endif %}
 
-
-    {% endblock pruebaTemplate %}
+{% endblock pruebaTemplate %}
+{%block otroBloque%}
+{% endblock otroBloque %}

@@ -1,31 +1,52 @@
 {%extends 'index/index.html'%}
-
+<html>
 {% block BloqueHead %}
     <title>Plantilla</title>
 {% endblock BloqueHead %}
-   
-            <!-- Masthead-->    
-            <header class="masthead">   
+
+      <!-- Masthead-->    
+            {% comment %} <header class="masthead">   
                 <div class="container position-relative">
                     <div class="row justify-content-center">
                         <div class="col-xl-6">
                             <div class="text-center text-white">
                                 <!-- Page heading-->
-                            {% block headerblock  %}
-                                 <h1 class="mb-5">Bienvenidos a mi blog!</h1>
-                            {% endblock headerblock %}
-                                    {% comment %} <h1 class="mb-5">Bienvenidos!</h1>      {% endcomment %}
-                            </div>
+                                 <h1 class="mb-5">Bienvenidos!</h1>    
+                           </div>
                         </div>
                     </div>
                 </div>
-            </header>
+            </header>  {% endcomment %}
+   {%block headerblock%}    
+   {%endblock headerblock%}
+{% block otrobloque %} 
+{% endblock otrobloque %}
+    <div class="container-fluid p-0">
+    <div class="row g-0">
+        <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/img/bg-showcase-1.jpg')"></div>
+        <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+            <h2>Un más poco sobre mi...</h2>
+            <p class="lead mb-0">Soy nacida en la ciudad de Neuquen Capital pero me mude a Buenos Aires a estudiar y quede fascinada con la ciudad...</p>
+        </div>
+    </div>
 
 
-{% block pruebaTemplate %}
 
-    {% if nombre_largo < 5 %}
-        <p style="color: pink;">{{nombre}}</p>
+{% comment %} <body>
+    <header>
+        <div class="col-xl-6">
+            <div class="text-center text-white">
+                 <h1 class="mb-5">{{nombre}}</h1>    
+           </div>
+        </div>
+    <h1><p style="color: pink;">{{nombre}}</p></h1>
+    </header>
+    <h1><p style= "color: black;">{{intro}}</p></h1>
+</body>    
+{% block pruebaTemplate %} {% endcomment %}
+
+        {% comment %} {% if intro < 5 %}
+        <p style="color: pink;">{{intro}}</p>
         <p style="color: blue;">{{apellido}}</p>
     {% elif nombre_largo == 5%}
         <p style="color: green;">{{nombre}}</p>
@@ -37,8 +58,9 @@
 
     {% for valor in lista %}
         <p style="color: red;">{{valor}}</p>    
-    {% endfor %}
+    {% endfor %}  {% endcomment %}
 
-
+{% block pruebaTemplate %}
 {% endblock pruebaTemplate %}   
    
+</html>

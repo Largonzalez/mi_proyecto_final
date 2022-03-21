@@ -1,9 +1,11 @@
 
 
 {%extends 'index/index.html'%}
+{% block otroBloque %}
+{% endblock otroBloque %}
+{%block headerblock%}
 
-{%block header_index%}      
-{%endblock header_index%}
+{%endblock headerblock%}
 
 {%block pruebaTemplate%}
 
@@ -12,8 +14,9 @@
      <table>
         {{formulario.as_table}}
      <table/>
-    {% comment %} Curso <input type="text", name='curso'>
-    Camada <input type="number", name= 'camada'> {% endcomment %}
+    Nombre <input type="text", name='nombre'>
+    Apellido <input type="text", name= 'apellido'>
+    Mascota <input type="text", name= 'mascota'>
 
 
 

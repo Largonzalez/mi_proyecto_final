@@ -14,3 +14,6 @@ class Hombres(models.Model):
     apellido= models.CharField(max_length=30)
     mascota= models.BooleanField()
     club_futbol= models.CharField(max_length=50)
+
+    def __str__(self):
+        return f"nombre: {self.nombre}- Apellido: {self.apellido}"
