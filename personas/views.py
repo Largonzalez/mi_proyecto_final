@@ -1,25 +1,25 @@
 from django.shortcuts import render
-from personas.models import Mujeres, Hombres
-from personas.forms import BusquedaNombre, Formulario
+
+from personas.models import Persona
+
+from . forms import BusquedaNombre, Formulario
 
 
 # Create your views here.
 
 def formulario_nombres(request):
-    form= None
+    if request.method== 'POST':
+        form= Formulario(request.POST)
+
+        if form.is_valid():
+            data=form.cleaned_data
+            nueva_persona = Persona()
+            nueva_persona.save()
+           
+    form= Formulario()
     return render(request, 'personas/formulario.html', {'form': form })
 
-    # if request.method== 'POST': 
-    #     form = Formulario()
 
-    # if form.is_valid():
-    #     data = form.cleaned_data
-    #     nombre = Mujeres(nombre=data['nombre'], apellido=data['apellido'])
-    #     formulario.save()
-    # return render(request, 'indice/index.html', {'formulario': formulario})
-
-    # formulario = Formulario()
-    # return render(request, 'personas/formulario.html', {'formulario': formulario})
 
 def busqueda_nombre(request):
     
@@ -27,8 +27,7 @@ def busqueda_nombre(request):
     dato = request.GET.get('partial_nombre', None)
 
     if dato is not None:
-        nombres_buscados = Mujeres.objects.filter(nombre__icontains=dato)
-        nombres_buscados = Hombres.objects.filter(nombre__icontains=dato)
+        nombres_buscados = Persona.objects.filter(persona__icontains=dato)
    
     buscador = BusquedaNombre
     ()

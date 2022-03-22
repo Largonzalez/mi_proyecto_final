@@ -19,17 +19,21 @@
             </header>  {% endcomment %}
    {%block headerblock%}    
    {%endblock headerblock%}
-{% block otrobloque %} 
-{% endblock otrobloque %}
-    <div class="container-fluid p-0">
-    <div class="row g-0">
-        <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/img/bg-showcase-1.jpg')"></div>
-        <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-            <h2>Un más poco sobre mi...</h2>
-            <p class="lead mb-0">Soy nacida en la ciudad de Neuquen Capital pero me mude a Buenos Aires a estudiar y quede fascinada con la ciudad...</p>
-        </div>
-    </div>
 
+    {% block bloque_medio %}
+<section class="showcase">
+    <div class="container-fluid p-0">
+        <div class="row g-0">
+            <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/img/bg-showcase-1.jpg')"></div>
+            <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                <h2>Un poco más sobre mi</h2>
+                <p class="lead mb-0">-Nací en Neuquen Capital un 20 de febrero del 1996, soy de piscis (como Justin), cuando terminé el secundario en 2014 tenía 18 años  me mudé a Buenos Aires para estudiar la carrera de abogacía y me gustó tanto la ciudad que decidí quedarme desde ese entonces. </p>
+                <p class="lead mb-0">-Aparte de estudiar abogacía también soy maquilladora profesional y el año pasado comencé a interesarme en el mundo de la programación, empezando por Python y en miras de continuar con lo referente a desarrollo web.</p>
+                <p class="lead mb-0">-A pesar de que trabajo full time como abogada en un estudio jurídico aprovecho mi tiempo libre para entrenar CrossFit.</p>
+            </div>
+        </div>
+</section>
+    {% endblock bloque_medio %}
 
 
 {% comment %} <body>

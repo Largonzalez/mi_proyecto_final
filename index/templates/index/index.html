@@ -58,33 +58,35 @@
 {% endblock bloque_de_plantilla %}
         {%endblock header_index%}
 
-{% block otroBloque %}
-
+    {% block otroBloque %}
         <!-- Image Showcases-->
-        <section class="showcase">
+          {% block bloque_medio %}
+          <section class="showcase">
             <div class="container-fluid p-0">
                 <div class="row g-0">
-                    <div class="col-lg-6 order-lg-2 text-white showcase-img"style="background-image: url("..assets/img/bg-showcase-1.jpg')"></div>
+                    <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/img/bg-showcase-1.jpg')"></div>
                     <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-                            <h2>Un poco sobre mi...</h2>
-                            <p class="lead mb-0">Soy nacida en la ciudad de Neuquen Capital pero me mude a Buenos Aires a estudiar y quede fascinada con la ciudad...</p>
-                        </div>
-                    </div>
-                    <div class="row g-0">
-                        <div class="col-lg-6 text-white showcase-img" style="background-image: url('..assets/img/bg-showcase-1.jpg')"></div>
-                        <div class="col-lg-6 my-auto showcase-text">
-                            <h2>A qué me dedico?</h2>
-                            <p class="lead mb-0">Soy abogada y me especializo en derecho societario y corporativo</p>
-                        </div>
-                    </div>
-                    <div class="row g-0">
-                        <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('index\static\assets\img\testimonials-1.jpg')"></div>
-                        <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-                            <h2>Queres saber un poco más sobre mi?</h2>
-                            <p class="lead mb-0">Hace click en el enlace "Sobre mi" y te llevará a una página llena de información sobre mi!</p>
-                        </div>
+                  
+                        <h2>Un poco sobre mi</h2>
+                        <p class="lead mb-0">Me llamo Lara González, tengo 26 años y vivo en el barrio de Palermo dentro de Capital Federal</p>
                     </div>
                 </div>
+                <div class="row g-0">
+                    <div class="col-lg-6 text-white showcase-img" style="background-image: url('assets/img/bg-showcase-2.jpg')"></div>
+                    <div class="col-lg-6 my-auto showcase-text">
+                        <h2>A qué me dedico?</h2>
+                        <p class="lead mb-0">Soy abogada, me recibí en 2017 de la UADE y me especializo en derecho societario y corporativo.</p>
+                    </div>
+                </div>
+                <div class="row g-0">
+                    <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('assets/img/bg-showcase-3.jpg')"></div>
+                    <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                        <h2>Querés saber más?</h2>
+                        <p class="lead mb-0">Hace click abajo a la izquierda de tu pantalla en donde dice "Sobre mi" y te cuento mas!</p>
+                    </div>
+                </div>
+            </div>
+    {% endblock bloque_medio %}
         </section>
 {% endblock otroBloque %}
 <!-- Footer-->
