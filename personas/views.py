@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from personas.models import Persona
+from personas.models import Mujeres, Hombres
 
 from . forms import BusquedaNombre, Formulario
 
@@ -13,8 +13,8 @@ def formulario_nombres(request):
 
         if form.is_valid():
             data=form.cleaned_data
-            nueva_persona = Persona()
-            nueva_persona.save()
+            nuevo_nombre = Mujeres()
+            nuevo_nombre.save()
            
     form= Formulario()
     return render(request, 'personas/formulario.html', {'form': form })
@@ -27,7 +27,7 @@ def busqueda_nombre(request):
     dato = request.GET.get('partial_nombre', None)
 
     if dato is not None:
-        nombres_buscados = Persona.objects.filter(persona__icontains=dato)
+        nombres_buscados = Mujeres.objects.filter(nombre__icontains=dato)
    
     buscador = BusquedaNombre
     ()

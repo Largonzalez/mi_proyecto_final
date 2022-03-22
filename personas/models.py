@@ -2,16 +2,16 @@ from django.db import models
 
 # Create your models here.
 
-class Persona(models.Model):
+class Mujeres (models.Model):
     nombre= models.CharField(max_length=20)
     apellido= models.CharField(max_length=30)
     club_futbol= models.BooleanField()
 
 
-# class Hombres(models.Model):
-#     nombre= models.CharField(max_length=20)
-#     apellido= models.CharField(max_length=30)
-#     club_futbol= models.BooleanField()
+class Hombres(models.Model):
+    nombre= models.CharField(max_length=20)
+    apellido= models.CharField(max_length=30)
+    club_futbol= models.BooleanField()
 
     def __str__(self):
         return f"Nombre: {self.nombre}- Apellido: {self.apellido}"
