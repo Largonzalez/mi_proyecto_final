@@ -1,0 +1,21 @@
+{% extends 'index/index.html' %}
+
+
+{% block 'header_block' %}
+{% endblock 'header_block' %}
+
+{% block 'body_block' %}
+
+    <p>
+        <a href={% url 'personajes' %}>Volver</a>
+    </p>
+
+    <p>
+        <li>Nombre: {{object.nombre}}</li>
+        <li>Apellido: {{object.apellido}}</li>
+        <li>Sexo: {{object.sexo}}</li>
+        <li>Club de futbol: {{object.club_futbol | safe }}</li>
+        <li>Fecha creación: {{object.fecha_creacion | date:'d-m-Y H:m'}}</li>
+    </p>
+
+{% endblock 'body_block' %}

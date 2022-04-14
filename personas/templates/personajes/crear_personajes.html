@@ -1,0 +1,29 @@
+{% extends 'index/index.html' %}
+
+
+{% block 'header_block' %}
+{% endblock 'header_block' %}
+
+{% block 'body_block' %}
+
+    <p>
+        <a href={% url 'lista_personajes' %}>Crear personaje</a>
+    </p>
+
+    <form action="" method="get">
+        {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </table>
+        <button>Buscar</button>
+    </form>
+    
+    {% for personajes in personajes %}
+        <li>
+            <a href={% url 'detalle_personajes' personajes.id %}>{{personajes}}</a> |
+            <a href={% url 'editar_personajes' personajes.id %}>Editar</a> |
+            <a href={% url 'borrar_personajes' personajes.id %}>Borrar</a>
+        </li>
+    {% endfor %}
+
+{% endblock 'body_block' %}

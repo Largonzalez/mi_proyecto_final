@@ -1,0 +1,24 @@
+{% extends 'index/index.html' %}
+
+
+{% block 'header_block' %}
+{% endblock 'header_block' %}
+
+{% block 'body_block' %}
+
+<h2>Editar user</h2>
+
+{% if msj %}
+    {{msj}}
+{% endif %}
+    <form action="" method="post">
+        {% comment %} <input type="text"> {% endcomment %}
+        {% csrf_token %}
+        <table>
+        {{form.as_table}}
+        </table>
+        <button>Guardar</button>
+
+    </form>
+
+{% endblock 'body_block' %}

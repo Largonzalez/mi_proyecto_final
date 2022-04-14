@@ -1,9 +1,10 @@
 from django.contrib import admin
 
-from personas.models import  Hobbies, Hombres, Mujeres
+from personas.models import  Mascotas, Personajes, Viajes
 
 # Register your models here.
 
-admin.site.register(Mujeres)
-admin.site.register(Hombres)
-admin.site.register(Hobbies)
+admin.site.register(Personajes)
+admin.site.register(Viajes)
+admin.site.register(Mascotas)
+

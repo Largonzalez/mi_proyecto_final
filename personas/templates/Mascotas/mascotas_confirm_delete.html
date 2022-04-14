@@ -1,0 +1,19 @@
+{% extends 'index/index.html' %}
+
+
+{% block 'header_block' %}
+{% endblock 'header_block' %}
+
+{% block 'body_block' %}
+
+    <p>
+        <a href={% url 'mascotas' %}>Volver</a>
+    </p>
+    
+    <form action="" method="post">
+        {% csrf_token %}
+        Usted quiere borrar la mascota {{object}}?
+        <button>Borrar</button>
+    </form>
+
+{% endblock 'body_block' %}

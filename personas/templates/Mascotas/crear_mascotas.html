@@ -1,0 +1,29 @@
+{% extends 'index/index.html' %}
+
+
+{% block 'header_block' %}
+{% endblock 'header_block' %}
+
+{% block 'body_block' %}
+
+    <p>
+        <a href={% url 'lista_mascotas' %}>Crear mascota</a>
+    </p>
+
+    <form action="" method="get">
+        {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </table>
+        <button>Buscar</button>
+    </form>
+    
+    {% for mascotas in mascotas %}
+        <li>
+            <a href={% url 'detalle_mascotas' mascotas.id %}>{{mascotas}}</a> |
+            <a href={% url 'editar_mascotas' mascotas.id %}>Editar</a> |
+            <a href={% url 'borrar_mascotas' mascotas.id %}>Borrar</a>
+        </li>
+    {% endfor %}
+
+{% endblock 'body_block' %}

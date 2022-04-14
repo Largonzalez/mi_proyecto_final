@@ -1,0 +1,20 @@
+{% extends 'index/index.html' %}
+
+
+{% block 'header_block' %}
+{% endblock 'header_block' %}
+
+{% block 'body_block' %}
+
+    <p>
+        <a href={% url 'mascotas' %}>Volver</a>
+    </p>
+
+    <p>
+        <li>Animal: {{object.animal}}</li>
+        <li>Tamaño: {{object.tamaño}}</li>
+        <li>Color: {{object.color}}</li>
+        <li>Fecha creación: {{object.fecha_creacion | date:'d-m-Y H:m'}}</li>
+    </p>
+
+{% endblock 'body_block' %}

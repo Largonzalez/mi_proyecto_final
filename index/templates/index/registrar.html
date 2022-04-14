@@ -1,0 +1,19 @@
+{% extends 'index/index.html' %}
+
+
+{% block 'header_block' %}
+{% endblock 'header_block' %}
+
+{% block 'body_block' %}
+{% if msj %}
+    {{msj}}
+{% endif %}
+    <form action="" method="post">
+        {% comment %} <input type="text"> {% endcomment %}
+        {% csrf_token %}
+        {{form.as_p}}
+        <button>Registrarse</button>
+
+    </form>
+
+{% endblock 'body_block' %}

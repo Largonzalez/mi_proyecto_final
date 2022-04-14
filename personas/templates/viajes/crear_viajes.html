@@ -1,0 +1,29 @@
+{% extends 'index/index.html' %}
+
+
+{% block 'header_block' %}
+{% endblock 'header_block' %}
+
+{% block 'body_block' %}
+
+    <p>
+        <a href={% url 'lista_viajes' %}>Crear viaje</a>
+    </p>
+
+    <form action="" method="get">
+        {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </table>
+        <button>Buscar</button>
+    </form>
+    
+    {% for viajes in viajes %}
+        <li>
+            <a href={% url 'detalle_viajes' viajes.id %}>{{viajes}}</a> |
+            <a href={% url 'editar_viajes' viajes.id %}>Editar</a> |
+            <a href={% url 'borrar_viajes' viajes.id %}>Borrar</a>
+        </li>
+    {% endfor %}
+
+{% endblock 'body_block' %}

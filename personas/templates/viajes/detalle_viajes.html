@@ -1,0 +1,20 @@
+{% extends 'index/index.html' %}
+
+
+{% block 'header_block' %}
+{% endblock 'header_block' %}
+
+{% block 'body_block' %}
+
+    <p>
+        <a href={% url 'viajes' %}>Volver</a>
+    </p>
+
+    <p>
+        <li>Destino: {{object.destino}}</li>
+        <li>Transporte: {{object.transporte}}</li>
+        <li>Duracion: {{object.duracion}}</li>
+        <li>Fecha creación: {{object.fecha_creacion | date:'d-m-Y H:m'}}</li>
+    </p>
+
+{% endblock 'body_block' %}
