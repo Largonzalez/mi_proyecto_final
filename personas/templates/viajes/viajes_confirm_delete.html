@@ -1,19 +1,28 @@
 {% extends 'index/index.html' %}
 
+<html>
+{% block BloqueHead %}
+{% endblock BloqueHead %}  
 
-{% block 'header_block' %}
-{% endblock 'header_block' %}
+{%block headerblock%}    
+{%endblock headerblock%}
 
-{% block 'body_block' %}
-
+{% block bloque_medio %}
     <p>
-        <a href={% url 'personajes' %}>Volver</a>
+        <a href={% url 'viajes' %}>Volver</a>
     </p>
     
     <form action="" method="post">
         {% csrf_token %}
-        Usted quiere borrar el personaje {{object}}?
+        Usted quiere borrar el viaje {{object}}?
         <button>Borrar</button>
     </form>
 
-{% endblock 'body_block' %}
+</form>
+{%endblock bloque_medio%}
+
+
+{% block pruebaTemplate %}
+{% endblock pruebaTemplate %}   
+
+</html>

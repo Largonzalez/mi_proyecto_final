@@ -1,13 +1,16 @@
 {% extends 'index/index.html' %}
 
+<html>
+{% block BloqueHead %}
+{% endblock BloqueHead %}  
 
-{% block 'header_block' %}
-{% endblock 'header_block' %}
+{%block headerblock%}    
+{%endblock headerblock%}
 
-{% block 'body_block' %}
+{% block bloque_medio %}
 
     <p>
-        <a href={% url 'lista_viajes' %}>Crear viaje</a>
+        <a href={% url 'crear_viajes' %}>Crear viaje</a>
     </p>
 
     <form action="" method="get">
@@ -26,4 +29,11 @@
         </li>
     {% endfor %}
 
-{% endblock 'body_block' %}
+</form>
+{%endblock bloque_medio%}
+
+
+{% block pruebaTemplate %}
+{% endblock pruebaTemplate %}   
+
+</html>

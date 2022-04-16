@@ -1,13 +1,16 @@
 {% extends 'index/index.html' %}
 
+<html>
+{% block BloqueHead %}
+{% endblock BloqueHead %}  
 
-{% block 'header_block' %}
-{% endblock 'header_block' %}
+{%block headerblock%}    
+{%endblock headerblock%}
 
-{% block 'body_block' %}
+{% block bloque_medio %}
 
     <p>
-        <a href={% url 'lista_personajes' %}>Crear personaje</a>
+        <a href={% url 'crear_personajes' %}>Crear personaje</a>
     </p>
 
     <form action="" method="get">
@@ -15,8 +18,8 @@
         <table>
             {{form.as_table}}
         </table>
-        <button>Buscar</button>
-    </form>
+        <button>Crear</button>
+   
     
     {% for personajes in personajes %}
         <li>
@@ -25,5 +28,11 @@
             <a href={% url 'borrar_personajes' personajes.id %}>Borrar</a>
         </li>
     {% endfor %}
+ </form>
+    {%endblock bloque_medio%}
 
-{% endblock 'body_block' %}
+
+    {% block pruebaTemplate %}
+    {% endblock pruebaTemplate %}   
+    
+    </html>

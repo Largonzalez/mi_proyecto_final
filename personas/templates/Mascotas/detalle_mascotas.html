@@ -1,12 +1,13 @@
 {% extends 'index/index.html' %}
 
+<html>
+{% block BloqueHead %}
+{% endblock BloqueHead %}  
 
-{% block 'header_block' %}
-{% endblock 'header_block' %}
+{%block headerblock%}    
+{%endblock headerblock%}
 
-{% block 'body_block' %}
-
-    <p>
+{% block bloque_medio %}
         <a href={% url 'mascotas' %}>Volver</a>
     </p>
 
@@ -17,4 +18,11 @@
         <li>Fecha creación: {{object.fecha_creacion | date:'d-m-Y H:m'}}</li>
     </p>
 
-{% endblock 'body_block' %}
+
+{%endblock bloque_medio%}
+
+
+{% block pruebaTemplate %}
+{% endblock pruebaTemplate %}   
+
+</html>

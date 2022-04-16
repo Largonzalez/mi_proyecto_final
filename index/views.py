@@ -10,7 +10,7 @@ from .models import Avatar
 # Create your views here.
 
 def index(request):
-    return render (request, 'index/index.html', {})
+    return render(request, "index/index.html", {'user_avatar_url': buscar_url_avatar})
 
 
 def plantilla(request):
@@ -104,6 +104,7 @@ def editar(request):
         )
  
     return render(request, 'index/editar_user.html', {'form': form, 'msj': '', 'user_avatar_url': buscar_url_avatar(request.user)})    
+
 
 
 def buscar_url_avatar(user):

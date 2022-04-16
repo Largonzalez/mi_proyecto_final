@@ -1,21 +1,42 @@
 {% extends 'index/index.html' %}
 
-{% block 'header_block' %}
-{% endblock 'header_block' %}
+<html>
+{% block BloqueHead %}
+{% endblock BloqueHead %}  
 
-{% block 'body_block' %}
+{%block headerblock%}    
+{%endblock headerblock%}
 
-    <p>
-        <a href={% url 'crear_mascotas' %}>Crear mascotas</a>
-    </p>
-    <form action="" method="post">
-        {% csrf_token %}
-        <table>
-            {{form.media}}
-            {{form.as_table}}
-        </table>
+{% block bloque_medio %}
 
-        <button>Crear</button>
-    </form>
+<p>
+    <a href={% url 'crear_mascotas' %}>Crear mascota</a>
+</p>
 
-{% endblock 'body_block' %}
+    {% for mascotas in object_list %}
+        <li>
+            {{mascotas}}
+            <a href={% url 'detalle_mascotas' mascotas.id %}>Ver mas...</a>
+            <a href={% url 'editar_mascotas' mascotas.id %}>Editar</a>
+            <a href={% url 'borrar_mascotas' mascotas.id %}>Borrar</a>
+        </li>
+    {% endfor %}
+        <form action="" method="post">
+            {% csrf_token %}
+            <table>
+                {{form.media}}
+                {{form.as_table}}
+            </table>
+
+            <button>Buscar</button>
+        </form>
+
+
+{%endblock bloque_medio%}
+
+
+{% block pruebaTemplate %}
+{% endblock pruebaTemplate %}   
+
+</html>
+

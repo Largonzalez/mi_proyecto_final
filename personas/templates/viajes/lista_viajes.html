@@ -1,12 +1,15 @@
 {% extends 'index/index.html' %}
 
-{% block 'header_block' %}
-{% endblock 'header_block' %}
+<html>
+{% block BloqueHead %}
+{% endblock BloqueHead %}  
 
-{% block 'body_block' %}
+{%block headerblock%}    
+{%endblock headerblock%}
 
+{% block bloque_medio %}
     <p>
-        <a href={% url 'crear_personas' %}>Crear personajes</a>
+        <a href={% url 'crear_viajes' %}>Crear viajes</a>
     </p>
     <form action="" method="post">
         {% csrf_token %}
@@ -15,7 +18,14 @@
             {{form.as_table}}
         </table>
 
-        <button>Crear</button>
+        <button>Buscar</button>
     </form>
 
-{% endblock 'body_block' %}
+</form>
+{%endblock bloque_medio%}
+
+
+{% block pruebaTemplate %}
+{% endblock pruebaTemplate %}   
+
+</html>

@@ -1,11 +1,13 @@
 {% extends 'index/index.html' %}
 
+<html>
+{% block BloqueHead %}
+{% endblock BloqueHead %}  
 
-{% block 'header_block' %}
-{% endblock 'header_block' %}
+{%block headerblock%}    
+{%endblock headerblock%}
 
-{% block 'body_block' %}
-
+{% block bloque_medio %}
 <h2>Editar user</h2>
 
 {% if msj %}
@@ -20,5 +22,10 @@
         <button>Guardar</button>
 
     </form>
-
-{% endblock 'body_block' %}
+    {%endblock bloque_medio%}
+    
+    
+    {% block pruebaTemplate %}
+    {% endblock pruebaTemplate %}   
+    
+    </html>

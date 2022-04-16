@@ -1,10 +1,11 @@
 {% extends 'index/index.html' %}
 
+<html>
+{% block BloqueHead %}
+{% endblock BloqueHead %}  
 
-{% block 'header_block' %}
-{% endblock 'header_block' %}
-
-{% block 'body_block' %}
+{%block headerblock%}    
+{%endblock headerblock%}
 
     <p>
         <a href={% url 'personajes' %}>Volver</a>
@@ -16,4 +17,11 @@
         <button>Borrar</button>
     </form>
 
-{% endblock 'body_block' %}
+</form>
+{%endblock bloque_medio%}
+
+
+{% block pruebaTemplate %}
+{% endblock pruebaTemplate %}   
+
+</html>
