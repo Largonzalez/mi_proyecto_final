@@ -1,4 +1,6 @@
 from django.db import models
+from ckeditor.fields import RichTextField
+from django.utils import timezone
 
 # Create your models here.
 
@@ -12,9 +14,9 @@ class Personajes (models.Model):
         return f"Nombre: {self.nombre}- Apellido: {self.apellido} - Sexo: {self.sexo}"
 
 class Mascotas(models.Model):
-    animal: models.CharField(max_length=100)
-    tamaño: models.CharField(max_length=25)
-    color: models.CharField(max_length=20)
+    animal= models.CharField(max_length=20)
+    tamaño= models.CharField(max_length=30)
+    color= models.CharField(max_length=30)
 
 
     def __str__(self):
@@ -25,6 +27,8 @@ class Viajes (models.Model):
     destino= models.CharField(max_length=40)
     transporte= models.CharField(max_length=40)
     duracion= models.CharField(max_length=30)
+    descripcion_viaje= RichTextField (blank=True, null=True)
+    fecha_creacion= models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return f"Destino: {self.destino}- Transporte: {self.transporte} - Duración: {self.duracion}"

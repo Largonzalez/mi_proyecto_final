@@ -11,7 +11,7 @@ urlpatterns = [
     path('mascotas/<int:pk>/editar', views.EditarMascotas.as_view(), name="editar_mascotas"),
     path('mascotas/<int:pk>/borrar', views.BorrarMascotas.as_view(), name="borrar_mascotas"),
     
-    path('personajes/', views.lista_personajes, name="personajes"),
+    path('personajes/lista', views.lista_personajes, name="personajes"),
     path('personajes/crear/', views.crear_personajes, name="crear_personajes"),
     path('personajes/<int:pk>', views.DetallePersonajes.as_view(), name="detalle_personajes"),
     path('personajes/<int:pk>/editar', views.EditarPersonajes.as_view(), name="editar_personajes"),

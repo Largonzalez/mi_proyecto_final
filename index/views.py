@@ -18,17 +18,9 @@ def plantilla(request):
 
 
     intro= ' Tengo 26 años, soy abogada y me especializo en derecho corporativo'
-    # lista = [3,1,2,45,1,2,3]
-
-    diccionario_de_datos = {
-        'nombre': nombre,
-        'nombre': nombre,
-        # 'nombre_largo': len(nombre),
-        # 'lista': lista
-} 
 
 
-    return render (request,"index/plantilla.html", diccionario_de_datos)
+    return render (request,"index/plantilla.html")
 
 
 def login (request):

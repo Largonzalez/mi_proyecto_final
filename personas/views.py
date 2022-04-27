@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from .models import Personajes, Mascotas, Viajes
 
@@ -43,10 +43,9 @@ def lista_personajes(request):
     form = forms.BusquedaPersonajes()
     return render(request, "personajes/lista_personajes.html", {'form': form, 'personajes': personajes})
 
-# class ListaPersonajes(LoginRequiredMixin, ListView):
-#     model: Personajes
-#     template_name= 'personas/lista_personajes.html'
-
+# class ListaPersonajes (ListView):
+#     model= Personajes
+#     template_name= 'personajes/lista_personajes.html'
 
 class DetallePersonajes(LoginRequiredMixin, DetailView):
     model = Personajes
@@ -54,12 +53,14 @@ class DetallePersonajes(LoginRequiredMixin, DetailView):
 
 class EditarPersonajes(LoginRequiredMixin, UpdateView):
     model = Personajes
+    template_name= 'personajes/personajes_confirm_delete.html'
     success_url = '/personas/personajes/'
     fields = ['nombre', 'apellido', 'sexo', 'club_futbol']
 
 
 class BorrarPesonajes(LoginRequiredMixin, DeleteView):
     model = Personajes
+    template_name= 'personajes/personajes_form.html'
     success_url = '/personas/personajes/'
 
 
@@ -71,8 +72,13 @@ def crear_mascotas(request):
 
         if form.is_valid():
             data=form.cleaned_data
-            nuevo_mascota = Mascotas()
+            nuevo_mascota = Mascotas(
+                animal= data['animal'],
+                tamaño= data ['tamaño'], 
+                color= data ['color']
+            )
             nuevo_mascota.save()
+            return render('mascotas/lista_mascotas.html')
            
     form= forms.CrearMascotas()
     return render(request, 'mascotas/crear_mascotas.html', {'form': form })
@@ -80,16 +86,19 @@ def crear_mascotas(request):
 
 def lista_mascotas(request):
     
-    mascota_a_buscar = request.GET.get('mascotas', None)
+    mascota_a_buscar = request.GET.get('animal', None)
     
     if mascota_a_buscar is not None:
-        mascotas = Mascotas.objects.filter(mascotas__icontains=mascota_a_buscar)
+        mascotas = Mascotas.objects.filter(animal__icontains=mascota_a_buscar)
     else:
         mascotas = Mascotas.objects.all()
-        
+    
     form = forms.BusquedaMascotas()
     return render(request, "mascotas/lista_mascotas.html", {'form': form, 'mascotas': mascotas})
 
+# class ListaMascotas(ListView):
+#     model= Mascotas
+#     template_name= 'mascotas/lista_mascotas.html'
 
 class DetalleMascotas(DetailView):
     model = Mascotas
@@ -100,11 +109,13 @@ class DetalleMascotas(DetailView):
 class EditarMascotas(LoginRequiredMixin, UpdateView):
     model = Mascotas
     success_url = '/personas/mascotas/'
+    template_name = 'mascotas/mascotas_confirm_delete.html'
     fields = ['animal', 'tamaño', 'color']
 
 
 class BorrarMascotas(LoginRequiredMixin, DeleteView):
     model = Mascotas
+    template_name = '/mascotas/mascotas_form.html'
     success_url = '/personas/mascotas/'
 
 
@@ -116,11 +127,17 @@ def crear_viajes(request):
 
         if form.is_valid():
             data=form.cleaned_data
-            nuevo_viajes = Viajes()
+            nuevo_viajes = Viajes(
+                destino= data['destino'],
+                transporte=data['transporte'],
+                duracion=data['duracion'],
+                descripcion_viaje=data['descripcion_viaje'],
+                
+            )
             nuevo_viajes.save()
            
     form= forms.CrearViajes()
-    return render(request, 'viajes/crear_viajes.html', {'form': form })
+    return render(request, 'viajes/lista_viajes.html', {'form': form })
 
 
 def lista_viajes(request):
@@ -143,9 +160,11 @@ class DetalleViajes(DetailView):
 class EditarViajes(LoginRequiredMixin, UpdateView):
     model = Viajes
     success_url = '/personas/viajes/'
+    template_name= 'viajes/viajes_confirm_delete.html'
     fields = ['destino', 'transporte', 'duración']
 
 
 class BorrarViajes(LoginRequiredMixin, DeleteView):
     model = Viajes
+    template_name= 'viajes/viajes_form.html'
     success_url = '/personas/viajes/'
