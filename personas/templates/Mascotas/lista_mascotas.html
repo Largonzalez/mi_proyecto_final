@@ -21,7 +21,7 @@
             <a href={% url 'borrar_mascotas' mascotas.id %}>Borrar</a>
         </li>
     {% endfor %}
-        <form action="" method="post">
+        <form action="" method="get">
             {% csrf_token %}
             <table>
                 {{form.media}}

@@ -31,4 +31,4 @@ class Viajes (models.Model):
     fecha_creacion= models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return f"Destino: {self.destino}- Transporte: {self.transporte} - Duración: {self.duracion}"
+        return f"Destino: {self.destino}- Transporte: {self.transporte} - Duración: {self.duracion}- Descripción: {self.descripcion_viaje}- Fecha de creación: {self.fecha_creacion}"

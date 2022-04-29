@@ -161,7 +161,7 @@ class EditarViajes(LoginRequiredMixin, UpdateView):
     model = Viajes
     success_url = '/personas/viajes/'
     template_name= 'viajes/viajes_confirm_delete.html'
-    fields = ['destino', 'transporte', 'duración']
+    fields = ['destino', 'transporte', 'duración', 'descripcion_viaje', 'fecha_creacion']
 
 
 class BorrarViajes(LoginRequiredMixin, DeleteView):
