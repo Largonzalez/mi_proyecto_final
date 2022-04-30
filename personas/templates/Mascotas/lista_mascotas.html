@@ -1,4 +1,4 @@
-{% extends 'index/index.html' %}
+{% extends 'accounts/index.html' %}
 
 <html>
 {% block BloqueHead %}
@@ -13,24 +13,23 @@
     <a href={% url 'crear_mascotas' %}>Crear mascota</a>
 </p>
 
-    {% for mascotas in object_list %}
+    {% for mascota in mascotas %}
         <li>
-            {{mascotas}}
-            <a href={% url 'detalle_mascotas' mascotas.id %}>Ver mas...</a>
-            <a href={% url 'editar_mascotas' mascotas.id %}>Editar</a>
-            <a href={% url 'borrar_mascotas' mascotas.id %}>Borrar</a>
+            {{mascota}}
+            <a href={% url 'detalle_mascotas' mascota.id %}>Ver mas...</a>
+            <a href={% url 'editar_mascotas' mascota.id %}>Editar</a>
+            <a href={% url 'borrar_mascotas' mascota.id %}>Borrar</a>
         </li>
     {% endfor %}
-        <form action="" method="get">
-            {% csrf_token %}
-            <table>
-                {{form.media}}
-                {{form.as_table}}
-            </table>
+    <form action="" method="post">
+        {% csrf_token %}
+        <table>
+            {{form.media}}
+            {{form.as_table}}
+        </table>
 
-            <button>Buscar</button>
-        </form>
-
+        <button>Buscar</button>
+    </form>
 
 {%endblock bloque_medio%}
 

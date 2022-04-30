@@ -1,6 +1,6 @@
 from operator import index
 from django.urls import path 
-from .views import index, plantilla, login, registrar, editar
+from .views import index, login, registrar, editar, about
 from django.contrib.auth.views import LogoutView
 
 
@@ -8,7 +8,7 @@ from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path('', index, name= "index"),
-    path('plantilla/', plantilla, name='plantilla'),
+    path('about/', about, name='about'),
     path('login/', login, name='login'),
     path('registrar/', registrar, name='registrar'),
     path('editar/', editar, name='editar'),

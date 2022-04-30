@@ -1,4 +1,4 @@
-{% extends 'index/index.html' %}
+{% extends 'accounts/index.html' %}
 
 <html>
 {% block BloqueHead %}
@@ -8,6 +8,7 @@
 {%endblock headerblock%}
 
 {% block bloque_medio %}
+<h2>Editar user</h2>
 
 {% if msj %}
     {{msj}}
@@ -15,16 +16,16 @@
     <form action="" method="post">
         {% comment %} <input type="text"> {% endcomment %}
         {% csrf_token %}
-        {{form.as_p}}
-        <button>Registrarse</button>
+        <table>
+        {{form.as_table}}
+        </table>
+        <button>Guardar</button>
 
     </form>
-
-</form>
-{%endblock bloque_medio%}
-
-
-{% block pruebaTemplate %}
-{% endblock pruebaTemplate %}   
-
-</html>
+    {%endblock bloque_medio%}
+    
+    
+    {% block pruebaTemplate %}
+    {% endblock pruebaTemplate %}   
+    
+    </html>

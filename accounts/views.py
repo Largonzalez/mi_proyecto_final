@@ -10,17 +10,17 @@ from .models import Avatar
 # Create your views here.
 
 def index(request):
-    return render(request, "index/index.html", {'user_avatar_url': buscar_url_avatar})
+    return render(request, "accounts/index.html", {'user_avatar_url': buscar_url_avatar})
 
 
-def plantilla(request):
+def about(request):
     nombre= f'Hola!  soy Lara González.'
 
 
     intro= ' Tengo 26 años, soy abogada y me especializo en derecho corporativo'
 
 
-    return render (request,"index/plantilla.html")
+    return render (request,"accounts/about.html")
 
 
 def login (request):
@@ -35,15 +35,15 @@ def login (request):
 
                 if user is not None:
                     django_login(request, user)
-                    return render(request, 'index/index.html', {'msj': 'Te logueaste con éxito!'})
+                    return render(request, 'accounts/index.html', {'msj': 'Te logueaste con éxito!'})
                     
                 else:
-                    return render(request, 'index/login.html', {'form': form, 'msj':'No se autenticó'})  
+                    return render(request, 'accounts/login.html', {'form': form, 'msj':'No se autenticó'})  
             else:
-                return render(request, 'index/login.html', {'form': form,'msj': 'Formulario con datos incorrectos'})  
+                return render(request, 'accounts/login.html', {'form': form,'msj': 'Formulario con datos incorrectos'})  
         else:
             form = AuthenticationForm()
-            return render(request, 'index/login.html', {'form': form, 'msj': ''})
+            return render(request, 'accounts/login.html', {'form': form, 'msj': ''})
         
 
 
@@ -55,12 +55,12 @@ def registrar(request):
         if form.is_valid():
             username= form.cleaned_data['username']
             form.save()
-            return render(request, 'index/index.html', {'msj': f'Se creo el user {username}'} )
+            return render(request, 'accounts/index.html', {'msj': f'Se creo el user {username}'} )
         else:
-          return render(request, 'index/registrar.html', {'form': form, 'msj': ''})  
+          return render(request, 'accounts/registrar.html', {'form': form, 'msj': ''})  
 
     form= NuestraCreacionUser()
-    return render(request, 'index/registrar.html', {'form': form, 'msj': ''})
+    return render(request, 'accounts/registrar.html', {'form': form, 'msj': ''})
 
 @login_required
 def editar(request):
@@ -82,9 +82,9 @@ def editar(request):
                 msj = 'No se modifico el password.'
             
             logued_user.save()  
-            return render(request, 'index/index.html', {'msj': 'Se modificó el user con éxito!', 'user_avatar_url': buscar_url_avatar(request.user)})
+            return render(request, 'accounts/index.html', {'msj': 'Se modificó el user con éxito!', 'user_avatar_url': buscar_url_avatar(request.user)})
         else:   
-            return render(request, 'index/editar_user.html', {'form': form, 'msj': '', 'user_avatar_url': buscar_url_avatar(request.user)})
+            return render(request, 'accounts/editar_user.html', {'form': form, 'msj': '', 'user_avatar_url': buscar_url_avatar(request.user)})
         
     form = NuestraEdicionUser(
             initial={
@@ -95,7 +95,7 @@ def editar(request):
             }
         )
  
-    return render(request, 'index/editar_user.html', {'form': form, 'msj': '', 'user_avatar_url': buscar_url_avatar(request.user)})    
+    return render(request, 'accounts/editar_user.html', {'form': form, 'msj': '', 'user_avatar_url': buscar_url_avatar(request.user)})    
 
 
 

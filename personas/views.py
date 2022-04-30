@@ -1,10 +1,10 @@
+
 from django.shortcuts import render, redirect
 
 from .models import Personajes, Mascotas, Viajes
 
 from . import forms
-from django.views.generic.detail import DetailView
-from django.views.generic.edit import UpdateView, DeleteView, CreateView
+from django.views.generic.edit import UpdateView, DeleteView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView
@@ -26,10 +26,6 @@ def crear_personajes(request):
            
     form= forms.CrearPersonajes()
     return render(request, 'personajes/crear_personajes.html', {'form': form })
-
-# class CrearPersonajes(LoginRequiredMixin, CreateView):
-#     model= Personajes
-#     template_name= 'personas/crear_personajes.html'
 
 def lista_personajes(request):
     
@@ -78,7 +74,7 @@ def crear_mascotas(request):
                 color= data ['color']
             )
             nuevo_mascota.save()
-            return render('mascotas/lista_mascotas.html')
+            return redirect('mascotas/lista_mascotas.html')
            
     form= forms.CrearMascotas()
     return render(request, 'mascotas/crear_mascotas.html', {'form': form })
@@ -86,23 +82,23 @@ def crear_mascotas(request):
 
 def lista_mascotas(request):
     
-    mascota_a_buscar = request.GET.get('animal', None)
+    mascota_a_buscar = []
+    dato = request.GET.get('partial_animal', None)
     
-    if mascota_a_buscar is not None:
-        mascotas = Mascotas.objects.filter(animal__icontains=mascota_a_buscar)
+    if dato is not None:
+        mascotas = Mascotas.objects.filter(mascota__icontains=dato)
     else:
         mascotas = Mascotas.objects.all()
     
     form = forms.BusquedaMascotas()
     return render(request, "mascotas/lista_mascotas.html", {'form': form, 'mascotas': mascotas})
 
-# class ListaMascotas(ListView):
-#     model= Mascotas
-#     template_name= 'mascotas/lista_mascotas.html'
+
 
 class DetalleMascotas(DetailView):
     model = Mascotas
     template_name = "mascotas/detalle_mascotas.html"
+    success_url = '/personas/mascotas/'
 
 
 
