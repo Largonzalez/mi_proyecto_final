@@ -31,6 +31,6 @@ class CrearViajes(forms.Form):
     transporte = forms.CharField(max_length=30)
     duracion = forms.CharField(max_length=30)
     descripcion_viaje= RichTextFormField (required=False)
-
+    
 class BusquedaViajes(forms.Form):
     destino = forms.CharField(max_length=20)

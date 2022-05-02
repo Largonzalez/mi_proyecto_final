@@ -1,0 +1,33 @@
+{% extends 'accounts/index.html' %}
+
+
+{% block BloqueHead %}
+{% endblock BloqueHead %}  
+
+{%block headerblock%}    
+{%endblock headerblock%}
+
+{% block bloque_medio %}
+    
+    <p>
+        {% if blogs %}
+        <h1>Hay páginas en la lista</h1>
+        {% else %}
+        <h1>No hay páginas en la lista</h1>
+        {% endif %}
+        </p>
+
+    {% for blog in blogs %}
+        <li>
+           <a href= {% url 'detalle_blog' blog.id %}>{{blog}}</a>  |
+           <a href= {% url 'editar_blog' blog.id %}>Editar</a>  |
+           <a href= {% url 'borrar_blog' blog.id %}>Borrar</a>  
+        </li>
+    {% endfor %}
+
+    {%endblock bloque_medio%}
+
+
+    {% block pruebaTemplate %}
+    {% endblock pruebaTemplate %}   
+    

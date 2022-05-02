@@ -6,6 +6,7 @@
 
 {%block headerblock%}    
 {%endblock headerblock%}
+{% block bloque_medio %}
 
     <p>
         <a href={% url 'personajes' %}>Volver</a>
@@ -13,7 +14,7 @@
     
     <form action="" method="post">
         {% csrf_token %}
-        Usted quiere borrar el personaje {{object}}?
+        ¿Usted quiere borrar el personaje?
         <button>Borrar</button>
     </form>
 

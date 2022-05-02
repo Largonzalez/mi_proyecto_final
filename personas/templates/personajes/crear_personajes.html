@@ -10,25 +10,21 @@
 {% block bloque_medio %}
 
     <p>
+        <a href={% url 'personajes' %}>Volver</a>   
+    </p>
+
+    <p>
         <a href={% url 'crear_personajes' %}>Crear personaje</a>
     </p>
 
-    <form action="" method="get">
+    <form action="" method="post">
         {% csrf_token %}
         <table>
             {{form.as_table}}
         </table>
         <button>Crear</button>
-   
+    </form>
     
-    {% for personajes in personajes %}
-        <li>
-            <a href={% url 'detalle_personajes' personajes.id %}>{{personajes}}</a> |
-            <a href={% url 'editar_personajes' personajes.id %}>Editar</a> |
-            <a href={% url 'borrar_personajes' personajes.id %}>Borrar</a>
-        </li>
-    {% endfor %}
- </form>
     {%endblock bloque_medio%}
 
 

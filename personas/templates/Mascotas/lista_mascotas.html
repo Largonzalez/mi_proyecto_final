@@ -13,6 +13,16 @@
     <a href={% url 'crear_mascotas' %}>Crear mascota</a>
 </p>
 
+
+    <form action="" method="get">
+        {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </table>
+
+        <button>Buscar</button>
+    </form>
+
     {% for mascota in mascotas %}
         <li>
             {{mascota}}
@@ -21,16 +31,7 @@
             <a href={% url 'borrar_mascotas' mascota.id %}>Borrar</a>
         </li>
     {% endfor %}
-    <form action="" method="post">
-        {% csrf_token %}
-        <table>
-            {{form.media}}
-            {{form.as_table}}
-        </table>
-
-        <button>Buscar</button>
-    </form>
-
+    
 {%endblock bloque_medio%}
 
 

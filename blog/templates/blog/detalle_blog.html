@@ -1,0 +1,47 @@
+{% extends 'accounts/index.html' %}
+
+
+{% block BloqueHead %}
+{% endblock BloqueHead %}  
+
+{%block headerblock%}    
+{%endblock headerblock%}
+
+{% block bloque_medio %}
+    <p>
+        <a href={% url "crear_blog" %}>Volver</a>
+    </p>
+    <p>    
+        {% if mas_datos.avatar %}
+            <img src="{{mas_datos.avatar.url}}" alt="imagen de perfil">
+        {% endif %}
+    </p>
+    <form action= {% url 'lista_blog' %} method="get" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            {{form.media}}
+            {{form.as_table}}
+        </table>
+    </form>
+
+
+    <p>
+        <li>Titulo: {{object.titulo}}</li>
+        <li>Subtitulo: {{object.subtitulo}}</li>
+        <li>Cuerpo: {{object.cuerpo | safe }}</li>
+        <li>Autor: {{object.autor}}</li>
+        <li>Fecha: {{object.fecha_creacion | safe }}</li>
+        <li>avatar: {{object.avatar}}</li>
+        <p>    
+            {% if mas_datos.avatar %}
+                <img src="{{mas_datos.avatar.url}}" alt="imagen de perfil">
+            {% endif %}
+        </p>
+    </p>
+
+    {%endblock bloque_medio%}
+
+
+    {% block pruebaTemplate %}
+    {% endblock pruebaTemplate %}   
+    

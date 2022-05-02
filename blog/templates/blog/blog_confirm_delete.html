@@ -1,6 +1,6 @@
 {% extends 'accounts/index.html' %}
 
-<html>
+
 {% block BloqueHead %}
 {% endblock BloqueHead %}  
 
@@ -9,18 +9,19 @@
 
 {% block bloque_medio %}
 
-    
+    <p>
+        <a href={% url "crear_blog" %}>Volver</a>
+    </p>
+
     <form action="" method="post">
         {% csrf_token %}
-        ¿Usted quiere borrar la mascota {{animal}}?
+        Usted quiere borrar el blog {{object}}?
         <button>Borrar</button>
     </form>
+    
+    {%endblock bloque_medio%}
 
 
-{%endblock bloque_medio%}
-
-
-{% block pruebaTemplate %}
-{% endblock pruebaTemplate %}   
-
-</html>
+    {% block pruebaTemplate %}
+    {% endblock pruebaTemplate %}   
+    

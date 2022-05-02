@@ -1,0 +1,39 @@
+{% extends 'accounts/index.html' %}
+
+
+{% block BloqueHead %}
+{% endblock BloqueHead %}  
+
+{%block headerblock%}    
+{%endblock headerblock%}
+
+{% block bloque_medio %}
+    <p>
+    {% if error %}
+    <h1>Hubo un error vuelva a cargar los datos!</h1>
+    {% endif %}
+    </p>
+
+    <p>
+        <a href={% url "crear_blog" %}>Volver</a>
+    </p>
+    <p>    
+        {% if mas_datos.avatar %}
+            <img src="{{mas_datos.avatar.url}}" alt="imagen de perfil">
+        {% endif %}
+    </p>
+    <form action= {% url 'crear_blog' %} method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            {{form.media}}
+            {{form.as_table}}
+        </table>
+        <button>Cargar Blog</button>
+    </form>
+
+    {%endblock bloque_medio%}
+
+
+    {% block pruebaTemplate %}
+    {% endblock pruebaTemplate %}   
+    

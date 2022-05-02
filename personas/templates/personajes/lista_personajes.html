@@ -8,18 +8,28 @@
 {%endblock headerblock%}
 
 {% block bloque_medio %}
+
     <p>
         <a href={% url 'crear_personajes' %}>Crear personajes</a>
     </p>
-    <form action="" method="post">
+    <form action="" method="get">
         {% csrf_token %}
         <table>
-            {{form.media}}
             {{form.as_table}}
         </table>
 
         <button>Buscar</button>
     </form>
+
+    {% for personaje in personajes %}
+    <li>
+        <a href={% url 'detalle_personajes' personaje.id %}>{{personaje}}</a> |
+        <a href={% url 'editar_personajes' personaje.id %}>Editar</a> |
+        <a href={% url 'borrar_personajes' personaje.id %}>Borrar</a>
+    </li>
+    {% endfor %}
+
+
     {%endblock bloque_medio%}
     
     

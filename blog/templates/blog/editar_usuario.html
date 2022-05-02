@@ -1,0 +1,29 @@
+{% extends 'accounts/index.html' %}
+
+
+{% block BloqueHead %}
+{% endblock BloqueHead %}  
+
+{%block headerblock%}    
+{%endblock headerblock%}
+
+{% block bloque_medio %} 
+    <p>
+    {% if msj %}
+        {{msj}}
+    {% endif %}
+    </p>
+    
+<form action= {% url 'editar_usuario' %} method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table>
+        {{form.as_table}}
+    </table>
+    <button>Guardar Cambios</button>
+</form>
+
+{%endblock bloque_medio%}
+
+
+{% block pruebaTemplate %}
+{% endblock pruebaTemplate %}   

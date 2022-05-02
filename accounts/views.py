@@ -4,7 +4,8 @@ from django.contrib.auth import login as django_login, authenticate
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.decorators import login_required
 
-from . forms import NuestraCreacionUser, NuestraEdicionUser
+
+from . forms import EditFullUser, NuestraCreacionUser
 from .models import Avatar
 
 # Create your views here.
@@ -66,7 +67,7 @@ def registrar(request):
 def editar(request):
     msj= ''
     if request.method == 'POST':
-        form=NuestraEdicionUser(request.POST)
+        form=EditFullUser(request.POST)
 
         if form.is_valid():
 
@@ -86,16 +87,19 @@ def editar(request):
         else:   
             return render(request, 'accounts/editar_user.html', {'form': form, 'msj': '', 'user_avatar_url': buscar_url_avatar(request.user)})
         
-    form = NuestraEdicionUser(
-            initial={
-                'first_name': request.user.first_name,
-                'last_name': request.user.last_name,
-                'email': request.user.email,
-                'username': request.user.username
-            }
-        )
- 
-    return render(request, 'accounts/editar_user.html', {'form': form, 'msj': '', 'user_avatar_url': buscar_url_avatar(request.user)})    
+    form = EditFullUser(
+    initial={
+            'email': request.user.email,
+            'password1': '',
+            'password2': '',
+            'first_name': request.user.first_name,
+            'last_name': request.user.last_name, 
+            'avatar': user_extension_logued.avatar,
+            'link': user_extension_logued.link,
+            'more_description': user_extension_logued.more_description
+        }
+    )
+    return render(request, 'accounts/editar_usuario.html', {'form': form})
 
 
 

@@ -6,7 +6,7 @@
 
 {%block headerblock%}    
 {%endblock headerblock%}
-
+{% block bloque_medio %}
 
     <p>
         <a href={% url 'personajes' %}>Volver</a>
@@ -17,9 +17,9 @@
         <table>
             {{form.as_table}}
         </table>
-        <button>Editar</button>
+        <button>Confirmar cambios</button>
     </form>
-</form>
+
 {%endblock bloque_medio%}
 
 

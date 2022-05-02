@@ -10,10 +10,14 @@
 {% block bloque_medio %}
 
     <p>
+        <a href={% url 'viajes' %}>Volver</a>   
+    </p>
+
+    <p>
         <a href={% url 'crear_viajes' %}>Crear viaje</a>
     </p>
 
-    <form action="" method="get">
+    <form action="" method="post">
         {% csrf_token %}
         <table>
             {{form.as_table}}
@@ -21,15 +25,6 @@
         <button>Crear</button>
     </form>
     
-    {% for viajes in viajes %}
-        <li>
-            <a href={% url 'detalle_viajes' viajes.id %}>{{viajes}}</a> |
-            <a href={% url 'editar_viajes' viajes.id %}>Editar</a> |
-            <a href={% url 'borrar_viajes' viajes.id %}>Borrar</a>
-        </li>
-    {% endfor %}
-
-</form>
 {%endblock bloque_medio%}
 
 

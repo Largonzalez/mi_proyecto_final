@@ -7,7 +7,7 @@ from . import forms
 from django.views.generic.edit import UpdateView, DeleteView
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, DetailView
+from django.views.generic import DetailView
 
 
 # Create your views here.
@@ -27,36 +27,35 @@ def crear_personajes(request):
     form= forms.CrearPersonajes()
     return render(request, 'personajes/crear_personajes.html', {'form': form })
 
+
 def lista_personajes(request):
     
-    personaje_a_buscar = request.GET.get('personaje', None)
+    personaje_a_buscar = request.GET.get('partial_personaje', None)
     
     if personaje_a_buscar is not None:
-        personajes = Personajes.objects.filter(personajes__icontains=personaje_a_buscar)
+        personajes = Personajes.objects.filter(personaje__icontains=personaje_a_buscar)
     else:
         personajes = Personajes.objects.all()
         
     form = forms.BusquedaPersonajes()
     return render(request, "personajes/lista_personajes.html", {'form': form, 'personajes': personajes})
 
-# class ListaPersonajes (ListView):
-#     model= Personajes
-#     template_name= 'personajes/lista_personajes.html'
 
 class DetallePersonajes(LoginRequiredMixin, DetailView):
     model = Personajes
     template_name = "personajes/detalle_personajes.html"
 
+
 class EditarPersonajes(LoginRequiredMixin, UpdateView):
     model = Personajes
-    template_name= 'personajes/personajes_confirm_delete.html'
+    template_name=  'personajes/personajes_form.html'
     success_url = '/personas/personajes/'
     fields = ['nombre', 'apellido', 'sexo', 'club_futbol']
 
 
 class BorrarPesonajes(LoginRequiredMixin, DeleteView):
     model = Personajes
-    template_name= 'personajes/personajes_form.html'
+    template_name='personajes/personajes_confirm_delete.html'
     success_url = '/personas/personajes/'
 
 
@@ -77,7 +76,7 @@ def crear_mascotas(request):
             return redirect('mascotas/lista_mascotas.html')
            
     form= forms.CrearMascotas()
-    return render(request, 'mascotas/crear_mascotas.html', {'form': form })
+    return render(request, 'mascotas/crear_mascotas.html', {'form': form, 'msj': 'Se creó la mascota con éxito!'})
 
 
 def lista_mascotas(request):
@@ -105,13 +104,13 @@ class DetalleMascotas(DetailView):
 class EditarMascotas(LoginRequiredMixin, UpdateView):
     model = Mascotas
     success_url = '/personas/mascotas/'
-    template_name = 'mascotas/mascotas_confirm_delete.html'
+    template_name = '/mascotas/mascotas_form.html'
     fields = ['animal', 'tamaño', 'color']
 
 
 class BorrarMascotas(LoginRequiredMixin, DeleteView):
     model = Mascotas
-    template_name = '/mascotas/mascotas_form.html'
+    template_name = 'mascotas/mascotas_confirm_delete.html'
     success_url = '/personas/mascotas/'
 
 
@@ -138,7 +137,7 @@ def crear_viajes(request):
 
 def lista_viajes(request):
     
-    viaje_a_buscar = request.GET.get('viajes', None)
+    viaje_a_buscar = request.GET.get('partial_destino', None)
     
     if viaje_a_buscar is not None:
         viajes = Viajes.objects.filter(viajes__icontains=viaje_a_buscar)
@@ -156,11 +155,11 @@ class DetalleViajes(DetailView):
 class EditarViajes(LoginRequiredMixin, UpdateView):
     model = Viajes
     success_url = '/personas/viajes/'
-    template_name= 'viajes/viajes_confirm_delete.html'
+    template_name= 'viajes/viajes_form.html'
     fields = ['destino', 'transporte', 'duración', 'descripcion_viaje', 'fecha_creacion']
 
 
 class BorrarViajes(LoginRequiredMixin, DeleteView):
     model = Viajes
-    template_name= 'viajes/viajes_form.html'
+    template_name= 'viajes/viajes_confirm_delete.html'
     success_url = '/personas/viajes/'

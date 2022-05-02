@@ -10,11 +10,7 @@
 {% block bloque_medio %}
 
     <p>
-        <a href={% url 'mascotas' %}>Volver</a>   
-    </p>
-
-    <p>
-        <a href={% url 'crear_mascotas' %}>Crear mascota</a>
+        <a href={% url "blog" %}>Volver</a>
     </p>
 
     <form action="" method="post">
@@ -22,12 +18,12 @@
         <table>
             {{form.as_table}}
         </table>
-        <button>Crear</button>
+        <button>Editar</button>
     </form>
 
+    {%endblock bloque_medio%}
 
-{%endblock bloque_medio%}
 
-
-{% block pruebaTemplate %}
-{% endblock pruebaTemplate %}   
+    {% block pruebaTemplate %}
+    {% endblock pruebaTemplate %}   
+    
