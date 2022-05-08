@@ -24,13 +24,13 @@ class CrearMascotas(forms.Form):
 class BusquedaMascotas(forms.Form):
     animal = forms.CharField(max_length=20)
 
-#Viajes
+#Vacaciones
 
-class CrearViajes(forms.Form):
-    destino = forms.CharField(max_length=20)
-    transporte = forms.CharField(max_length=30)
+class CrearVacaciones(forms.Form):
+    destino = forms.CharField(max_length=40)
+    transporte = forms.CharField(max_length=40)
     duracion = forms.CharField(max_length=30)
     descripcion_viaje= RichTextFormField (required=False)
     
-class BusquedaViajes(forms.Form):
+class BusquedaVacaciones(forms.Form):
     destino = forms.CharField(max_length=20)

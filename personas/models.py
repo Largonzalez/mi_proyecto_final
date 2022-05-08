@@ -10,6 +10,7 @@ class Personajes (models.Model):
     sexo= models.CharField(max_length=20)
     club_futbol= models.BooleanField()
 
+
     def __str__(self):
         return f"Nombre: {self.nombre}- Apellido: {self.apellido} - Sexo: {self.sexo}"
 
@@ -23,7 +24,7 @@ class Mascotas(models.Model):
         return f"Animal: {self.animal} -Tamaño: {self.tamaño} - Color: {self.color}"
 
 
-class Viajes (models.Model):
+class Vacaciones (models.Model):
     destino= models.CharField(max_length=40)
     transporte= models.CharField(max_length=40)
     duracion= models.CharField(max_length=30)

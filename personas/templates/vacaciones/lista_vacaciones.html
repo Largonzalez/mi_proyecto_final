@@ -9,7 +9,7 @@
 
 {% block bloque_medio %}
     <p>
-        <a href={% url 'crear_viajes' %}>Crear viajes</a>
+        <a href={% url 'crear_vacaciones' %}>Crear vacaciones</a>
     </p>
     <form action="" method="get">
         {% csrf_token %}
@@ -21,11 +21,11 @@
     <button>Buscar</button>
     </form>
 
-    {% for viaje in viajes %}
+    {% for viaje in vacaciones %}
         <li>
-            <a href={% url 'detalle_viajes' viaje.id %}>{{viaje}}</a> |
-            <a href={% url 'editar_viajes' viaje.id %}>Editar</a> |
-            <a href={% url 'borrar_viajes' viaje.id %}>Borrar</a>
+            <a href={% url 'detalle_vacaciones' viaje.id %}>{{viaje}}</a> 
+            <a href={% url 'editar_vacaciones' viaje.id %}>Editar</a> 
+            <a href={% url 'borrar_vacaciones' viaje.id %}>Borrar</a>
         </li>
     {% endfor %}
     

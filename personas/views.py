@@ -1,7 +1,7 @@
 
 from django.shortcuts import render, redirect
 
-from .models import Personajes, Mascotas, Viajes
+from .models import Personajes, Mascotas, Vacaciones
 
 from . import forms
 from django.views.generic.edit import UpdateView, DeleteView
@@ -73,7 +73,7 @@ def crear_mascotas(request):
                 color= data ['color']
             )
             nuevo_mascota.save()
-            return redirect('mascotas/lista_mascotas.html')
+            return redirect('mascotas/crear_mascotas.html', {'form': form, 'msj': 'Se creó la mascota con éxito!'})
            
     form= forms.CrearMascotas()
     return render(request, 'mascotas/crear_mascotas.html', {'form': form, 'msj': 'Se creó la mascota con éxito!'})
@@ -103,63 +103,65 @@ class DetalleMascotas(DetailView):
 
 class EditarMascotas(LoginRequiredMixin, UpdateView):
     model = Mascotas
+    # template_name = '/mascotas/mascotas_form.html'
     success_url = '/personas/mascotas/'
-    template_name = '/mascotas/mascotas_form.html'
     fields = ['animal', 'tamaño', 'color']
 
 
 class BorrarMascotas(LoginRequiredMixin, DeleteView):
     model = Mascotas
-    template_name = 'mascotas/mascotas_confirm_delete.html'
+    # template_name = 'mascotas/mascotas_confirm_delete.html'
     success_url = '/personas/mascotas/'
 
 
-#Class Viajes
+#Class Vacaciones
 
-def crear_viajes(request):
+def crear_vacaciones(request):
     if request.method== 'POST':
-        form= forms.CrearViajes(request.POST)
+        form= forms.CrearVacaciones(request.POST)
 
         if form.is_valid():
             data=form.cleaned_data
-            nuevo_viajes = Viajes(
+            nuevo_vacaciones = Vacaciones(
                 destino= data['destino'],
                 transporte=data['transporte'],
                 duracion=data['duracion'],
-                descripcion_viaje=data['descripcion_viaje'],
-                
+                descripcion_viaje=data['descripcion_viaje']  
             )
-            nuevo_viajes.save()
+            
+            nuevo_vacaciones.save()
+
+            return redirect (request, 'vacacionesl/ista_vacaciones.html')
            
-    form= forms.CrearViajes()
-    return render(request, 'viajes/lista_viajes.html', {'form': form })
+    form= forms.CrearVacaciones()
+    return render(request, 'vacaciones/lista_vacaciones.html', {'form': form })
 
 
-def lista_viajes(request):
+def lista_vacaciones(request):
     
-    viaje_a_buscar = request.GET.get('partial_destino', None)
+    vacaciones_a_buscar = request.GET.get('partial_destino', None)
     
-    if viaje_a_buscar is not None:
-        viajes = Viajes.objects.filter(viajes__icontains=viaje_a_buscar)
+    if vacaciones_a_buscar is not None:
+        vacaciones = Vacaciones.objects.filter(destino__icontains=vacaciones_a_buscar)
     else:
-        viajes = Viajes.objects.all()
+        vacaciones = Vacaciones.objects.all()
         
-    form = forms.BusquedaViajes()
-    return render(request, "viajes/lista_viajes.html", {'form': form, 'viajes': viajes})
+    form = forms.BusquedaVacaciones()
+    return render(request, "vacaciones/lista_vacaciones.html", {'form': form, 'vacaciones': vacaciones})
 
-class DetalleViajes(DetailView):
-    model = Viajes
-    template_name = "viajes/detalle_viajes.html"
-
-
-class EditarViajes(LoginRequiredMixin, UpdateView):
-    model = Viajes
-    success_url = '/personas/viajes/'
-    template_name= 'viajes/viajes_form.html'
-    fields = ['destino', 'transporte', 'duración', 'descripcion_viaje', 'fecha_creacion']
+class DetalleVacaciones(DetailView):
+    model = Vacaciones
+    template_name = "vacaciones/detalle_vacaciones.html"
 
 
-class BorrarViajes(LoginRequiredMixin, DeleteView):
-    model = Viajes
-    template_name= 'viajes/viajes_confirm_delete.html'
-    success_url = '/personas/viajes/'
+class EditarVacaciones(LoginRequiredMixin, UpdateView):
+    model = Vacaciones
+    success_url = '/personas/vacaciones/'
+    template_name= 'vacaciones/vacaciones_form.html'
+    fields = ['destino', 'transporte', 'duración', 'descripcion_vacaciones', 'fecha_creacion']
+
+
+class BorrarVacaciones(LoginRequiredMixin, DeleteView):
+    model = Vacaciones
+    template_name= 'vacaciones/vacaciones_confirm_delete.html'
+    success_url = '/personas/vacaciones/'

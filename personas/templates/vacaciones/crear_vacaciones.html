@@ -8,17 +8,24 @@
 {%endblock headerblock%}
 
 {% block bloque_medio %}
+
     <p>
-        <a href={% url 'viajes' %}>Volver</a>
+        <a href={% url 'vacaciones' %}>Volver</a>   
     </p>
-    
+
+    <p>
+        <a href={% url 'crear_vacaciones' %}>Crear vacaciones</a>
+    </p>
+
     <form action="" method="post">
         {% csrf_token %}
-        ¿Usted quiere borrar el viaje {{viaje}}?
-        <button>Borrar</button>
+        <table>
+            {{form.as_table}}
+        </table>
+        
+            <button>Crear</button>
     </form>
-
-</form>
+    
 {%endblock bloque_medio%}
 
 

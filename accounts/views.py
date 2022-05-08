@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 
 from . forms import EditFullUser, NuestraCreacionUser
-from .models import Avatar
+from .models import Avatar, UserExtension
 
 # Create your views here.
 
@@ -66,24 +66,27 @@ def registrar(request):
 @login_required
 def editar(request):
     msj= ''
+    user_extension_logued, _ = UserExtension.objects.get_or_create(user=request.user)
+    
     if request.method == 'POST':
-        form=EditFullUser(request.POST)
-
+        form = EditFullUser(request.POST, request.FILES)
         if form.is_valid():
 
-            data= form.cleaned_data
-
-            logued_user = request.user
-            logued_user.email = data.get('email')
-            logued_user.first_name = data.get('first_name', '')
-            logued_user.last_name = data.get('last_name', '')
-            if data.get('password1') == data.get('password2') and len(data.get('password1')) > 8:
-                logued_user.set_password(data.get('password1'))
-            else:
-                msj = 'No se modifico el password.'
+            request.user.email = form.cleaned_data['email']
+            request.user.first_name = form.cleaned_data['first_name']
+            request.user.last_name = form.cleaned_data['last_name']
+            request.user.email = form.cleaned_data['email']
+            user_extension_logued.avatar = form.cleaned_data['avatar']
+            user_extension_logued.link = form.cleaned_data['link']
+            user_extension_logued.more_description = form.cleaned_data['more_description']
             
-            logued_user.save()  
-            return render(request, 'accounts/index.html', {'msj': 'Se modificó el user con éxito!', 'user_avatar_url': buscar_url_avatar(request.user)})
+            if form.cleaned_data['password1'] != '' and form.cleaned_data['password1'] == form.cleaned_data['password2']:
+                request.user.set_password(form.cleaned_data['password1'])
+            
+            request.user.save()
+            user_extension_logued.save()
+            
+            return render(request, 'accounts/index.html', {'msj': 'Se modificó el user con éxito!'})
         else:   
             return render(request, 'accounts/editar_user.html', {'form': form, 'msj': '', 'user_avatar_url': buscar_url_avatar(request.user)})
         
@@ -99,7 +102,7 @@ def editar(request):
             'more_description': user_extension_logued.more_description
         }
     )
-    return render(request, 'accounts/editar_usuario.html', {'form': form})
+    return render(request, 'accounts/editar_user.html', {'form': form})
 
 
 
