@@ -52,13 +52,6 @@ def editar_usuario(request):
 
 
 @login_required
-def usuario_datos(request):
-    
-    mas_datos, _ =UserExtension.objects.get_or_create(user=request.user)
-    return render(request, "blog/usuario_datos.html", {"mas_datos": mas_datos})
-
-
-@login_required
 def crear_blog(request):
     
     if request.method== "POST":

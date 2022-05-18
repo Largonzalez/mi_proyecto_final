@@ -9,7 +9,7 @@ class Personajes (models.Model):
     apellido= models.CharField(max_length=30)
     sexo= models.CharField(max_length=20)
     club_futbol= models.BooleanField()
-
+    fecha_creacion= models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return f"Nombre: {self.nombre}- Apellido: {self.apellido} - Sexo: {self.sexo}"
@@ -28,8 +28,8 @@ class Vacaciones (models.Model):
     destino= models.CharField(max_length=40)
     transporte= models.CharField(max_length=40)
     duracion= models.CharField(max_length=30)
-    descripcion_viaje= RichTextField (blank=True, null=True)
+    descripcion= RichTextField (blank=True, null=True)
     fecha_creacion= models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return f"Destino: {self.destino}- Transporte: {self.transporte} - Duración: {self.duracion}- Descripción: {self.descripcion_viaje}- Fecha de creación: {self.fecha_creacion}"
+        return f"Destino: {self.destino}- Transporte: {self.transporte} - Duración: {self.duracion}- Descripción: {self.descripcion}- Fecha de creación: {self.fecha_creacion}"

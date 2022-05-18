@@ -159,7 +159,7 @@ class EditarVacaciones(LoginRequiredMixin, UpdateView):
     model = Vacaciones
     success_url = '/personas/vacaciones/'
     template_name= 'vacaciones/vacaciones_form.html'
-    fields = ['destino', 'transporte', 'duración', 'descripcion_vacaciones', 'fecha_creacion']
+    fields = ['destino', 'transporte', 'duración', 'descripcion', 'fecha_creacion']
 
 
 class BorrarVacaciones(LoginRequiredMixin, DeleteView):
