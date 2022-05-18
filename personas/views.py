@@ -23,6 +23,8 @@ def crear_personajes(request):
             data=form.cleaned_data
             nuevo_personaje = Personajes(nombre=data['nombre'], apellido= data['apellido'], sexo= data['sexo'], club_futbol=data['club_futbol'])
             nuevo_personaje.save()
+        else:
+            return redirect ('personajes/lista_personajes.html')
            
     form= forms.CrearPersonajes()
     return render(request, 'personajes/crear_personajes.html', {'form': form })
@@ -73,7 +75,7 @@ def crear_mascotas(request):
                 color= data ['color']
             )
             nuevo_mascota.save()
-            return redirect('mascotas/crear_mascotas.html', {'form': form, 'msj': 'Se creó la mascota con éxito!'})
+            
            
     form= forms.CrearMascotas()
     return render(request, 'mascotas/crear_mascotas.html', {'form': form, 'msj': 'Se creó la mascota con éxito!'})
@@ -81,16 +83,15 @@ def crear_mascotas(request):
 
 def lista_mascotas(request):
     
-    mascota_a_buscar = []
-    dato = request.GET.get('partial_animal', None)
+    mascota_a_buscar = request.GET.get('partial_animal', None)
     
-    if dato is not None:
-        mascotas = Mascotas.objects.filter(mascota__icontains=dato)
+    if mascota_a_buscar is not None:
+        mascota = Mascotas.objects.filter(mascota__icontains=mascota_a_buscar)
     else:
-        mascotas = Mascotas.objects.all()
+        mascota = Mascotas.objects.all()
     
     form = forms.BusquedaMascotas()
-    return render(request, "mascotas/lista_mascotas.html", {'form': form, 'mascotas': mascotas})
+    return render(request, "mascotas/lista_mascotas.html", {'form': form, 'mascotas': mascota})
 
 
 
@@ -103,14 +104,14 @@ class DetalleMascotas(DetailView):
 
 class EditarMascotas(LoginRequiredMixin, UpdateView):
     model = Mascotas
-    # template_name = '/mascotas/mascotas_form.html'
+    template_name = '/mascotas/mascotas_form.html'
     success_url = '/personas/mascotas/'
     fields = ['animal', 'tamaño', 'color']
 
 
 class BorrarMascotas(LoginRequiredMixin, DeleteView):
     model = Mascotas
-    # template_name = 'mascotas/mascotas_confirm_delete.html'
+    template_name = 'mascotas/mascotas_confirm_delete.html'
     success_url = '/personas/mascotas/'
 
 

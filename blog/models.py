@@ -5,7 +5,7 @@ from django.utils import timezone
 
 class UserExtension(models.Model):
     avatar= models.ImageField(upload_to="avatar",blank=True, null=True)
-    user= models.ForeignKey(User, on_delete=models.CASCADE, related_name= 'user_blog', null=True)
+    user= models.OneToOneField(User, on_delete=models.CASCADE, related_name= 'user_blog', null=True)
     link= models.URLField(null=True)
     more_description= models.CharField(max_length=100)
     

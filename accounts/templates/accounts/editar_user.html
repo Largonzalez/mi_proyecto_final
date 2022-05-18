@@ -13,13 +13,13 @@
 {% if msj %}
     {{msj}}
 {% endif %}
-    <form action="" method="post">
-        {% comment %} <input type="text"> {% endcomment %}
+    <form action= {% url 'editar' %} method="post" enctype="multipart/form-data">
+        <input type="text">
         {% csrf_token %}
         <table>
         {{form.as_table}}
         </table>
-        <button>Guardar</button>
+        <button>Guardar cambios</button>
 
     </form>
     {%endblock bloque_medio%}
@@ -29,3 +29,6 @@
     {% endblock pruebaTemplate %}   
     
     </html>
+
+
+   
